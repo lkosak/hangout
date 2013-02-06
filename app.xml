@@ -42,11 +42,14 @@
 
 <h3>Simple Hangout App</h3>
 
-<p>
-<input class="button" type="button" value="Show participants!" id="showParticipants" 
-    style="visibility:hidden;"
-    onClick="showParticipants()"/>
-</p>
+<div id="actions">
+  <input class="button" type="button" value="Show participants!" id="showParticipants" 
+      style="visibility:hidden;"
+      onClick="showParticipants()"/>
+  <input class="button" type="button" value="Burt it" id="burt" 
+      style="visibility:hidden;"
+      onClick="burt()"/>
+</div>
 
 <div id="participantsDiv"></div>
 
@@ -76,12 +79,24 @@ function showParticipants() {
   div.innerHTML = retVal;
 }
 
+function burt() {
+  var imageResource = gapi.hangout.av.effects.createImageResource(
+  'http://mediamikes.com/wp-content/uploads/2011/03/Burt_Reynolds_2010.jpg');
+
+  var overlay = imageResource.createFaceTrackingOverlay({
+  trackingFeature: gapi.hangout.av.effects.FaceTrackingFeature.NOSE_TIP,
+  scaleWithFace: true,
+  rotateWithFace: true
+  });
+  overlay.setVisible(true);
+}
+
 function init() {
   // When API is ready...                                                         
   gapi.hangout.onApiReady.add(
       function(eventObj) {
         if (eventObj.isApiReady) {
-          document.getElementById('showParticipants')
+          document.getElementById('actions')
             .style.visibility = 'visible';
         }
       });
