@@ -82,7 +82,7 @@ function burt() {
   'https://raw.github.com/lkosak/hangout/master/assets/mustache.png');
 
   var overlay = imageResource.createFaceTrackingOverlay({
-  trackingFeature: gapi.hangout.av.effects.FaceTrackingFeature.NOSE_TIP,
+  trackingFeature: gapi.hangout.av.effects.FaceTrackingFeature.UPPER_LIP,
   scaleWithFace: true,
   rotateWithFace: true
   });
